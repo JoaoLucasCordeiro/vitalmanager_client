@@ -10,6 +10,7 @@ import Signin from "./routes/Signin"
 import Signup from './routes/Signup'
 import SignupMed from './routes/SignupMed'
 import Home from './routes/Home'
+import SignupAdress from './routes/SignupAdress'
 
 
 // configurando o roteador, aqui é onde definimos as rotas da nossa aplicação, 
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: '/cadastro',
     element: <Signup />,
+  },
+  {
+    path: '/cadastro-endereco',
+    element: <SignupAdress />,
   },
   {
     path: '/cadastro-medico',
