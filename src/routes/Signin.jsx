@@ -10,7 +10,7 @@ const Signin = () => {
         <img
           src="/vitalmanagerlogo.svg"
           alt="Logo da plataforma VitalManager"
-          className="w-full max-w-[550px] mb-4"
+           className="max-w-full h-auto md:w-[600px] w-[800px]"
         />
         <label htmlFor="email" className="flex flex-col w-full">
           Email

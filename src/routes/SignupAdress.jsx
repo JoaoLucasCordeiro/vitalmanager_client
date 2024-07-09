@@ -7,7 +7,7 @@ const SignupAdress = () => {
         <img
           src="/vitalmanagerlogo.svg"
           alt="Logo da plataforma VitalManager"
-          className="max-w-full h-auto md:w-[600px] w-[800px]"
+         className="max-w-full h-auto md:w-[600px] w-[800px]"
         />
 
         <div className="flex flex-col sm:flex-row md:gap-10 gap-0 w-full md:justify-center justify-normal">
