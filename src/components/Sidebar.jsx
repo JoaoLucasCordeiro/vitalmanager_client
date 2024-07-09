@@ -21,9 +21,9 @@ const Sidebar = () => {
         onClick={toggleSidebar}
       >
         {isOpen ? (
-          <AiOutlineClose className="text-purple-500 text-3xl mr-5 mt-0" />
+          <AiOutlineClose className="text-purple-500 text-3xl mr-5 mt-7" />
         ) : (
-          <AiOutlineMenu className="text-purple-500 text-3xl mr-5 mt-0" />
+          <AiOutlineMenu className="text-purple-500 text-3xl mr-5 mt-7" />
         )}
       </button>
       <nav
