@@ -9,6 +9,10 @@ import Home from "./routes/Home";
 import SignupAdress from "./routes/SignupAdress";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import MedicalRecords from "./routes/MedicalRecords";
+import MedHome from "./routes/MedHome"
+import MedScheduling from "./routes/MedScheduling";
+import MedicalRecordsMed from "./routes/MedicalRecordsMed";
+
 
 const App = () => {
   return (
@@ -23,9 +27,13 @@ const App = () => {
           <Route path="/inicio" element={<Home />} />
           <Route path="/agenda" element={<Scheduling />} />
           <Route path="/prontuarios" element={<MedicalRecords />} />
+          <Route path="/inicio-medico" element={<MedHome />} />
+          <Route path="/agenda-pacientes" element={<MedScheduling />} />
+          <Route path="/prontuarios-pacientes" element={<MedicalRecordsMed />} />
         </Route>
 
-        <Route path="/agendamentos" element={<Scheduling />} />
+      
+
       </Routes>
     </Router>
   );

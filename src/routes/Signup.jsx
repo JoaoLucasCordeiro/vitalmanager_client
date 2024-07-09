@@ -8,17 +8,17 @@ const Signup = () => {
         <img
           src="/vitalmanagerlogo.svg"
           alt="Logo da plataforma VitalManager"
-          className="w-[600px]"
+           className="max-w-full h-auto md:w-[600px] w-[800px]"
         />
 
-        <div className="flex gap-10">
-          <div className="flex flex-col items-center">
+        <div className="flex flex-col sm:flex-row  md:gap-10 gap-0 w-full md:justify-center justify-normal">
+          <div className="flex flex-col items-center w-full max-w-[450px]">
             <label htmlFor="nome" className="flex flex-col ">
               Nome
               <input
                 type="text"
                 id="nome"
-                className="p-2 outline-none rounded-lg border bg-transparent border-gray-300 w-[20vw]"
+                className="p-2 outline-none rounded-lg border bg-transparent border-gray-300 w-full min-w-[390px]"
               />
             </label>
             <label htmlFor="sobrenome" className="flex flex-col ">
@@ -26,7 +26,7 @@ const Signup = () => {
               <input
                 type="text"
                 id="sobrenome"
-                className="p-2 outline-none rounded-lg border bg-transparent border-gray-300 w-[20vw]"
+                className="p-2 outline-none rounded-lg border bg-transparent border-gray-300 w-full min-w-[390px]"
               />
             </label>
             <label htmlFor="email" className="flex flex-col ">
@@ -34,7 +34,7 @@ const Signup = () => {
               <input
                 type="text"
                 id="email"
-                className="p-2 outline-none rounded-lg border bg-transparent border-gray-300 w-[20vw]"
+                className="p-2 outline-none rounded-lg border bg-transparent border-gray-300 w-full min-w-[390px]"
               />
             </label>
 
@@ -43,19 +43,18 @@ const Signup = () => {
               <input
                 type="date"
                 id="birthdate"
-                className="p-2 outline-none rounded-lg border bg-transparent border-gray-300 w-[20vw]"
+                className="p-2 outline-none rounded-lg border bg-transparent border-gray-300 w-full min-w-[390px]"
               />
             </label>
           </div>
-          {/* segunda coluna de dados */}
 
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center w-full max-w-[450px]">
             <label htmlFor="gender" className="flex flex-col ">
               Sexo
               <select
                 name="gender"
                 id="gender"
-                className="p-3 outline-none rounded-lg border bg-transparent border-gray-300 w-[20vw]"
+                className="p-3 outline-none rounded-lg border bg-transparent border-gray-300 w-full min-w-[390px]"
               >
                 <option value="feminino">Feminino</option>
                 <option value="masculino">Masculino</option>
@@ -66,7 +65,7 @@ const Signup = () => {
               <input
                 type="tel"
                 id="phone"
-                className="p-2 outline-none rounded-lg border bg-transparent border-gray-300 w-[20vw]"
+                className="p-2 outline-none rounded-lg border bg-transparent border-gray-300 w-full min-w-[390px]"
               />
             </label>
 
@@ -75,7 +74,7 @@ const Signup = () => {
               <input
                 type="password"
                 id="password"
-                className="p-2 outline-none rounded-lg border bg-transparent border-gray-300 w-[20vw]"
+                className="p-2 outline-none rounded-lg border bg-transparent border-gray-300 w-full min-w-[390px]"
               />
             </label>
 
@@ -84,7 +83,7 @@ const Signup = () => {
               <select
                 name="usertype"
                 id="usertype"
-                className="p-3 outline-none rounded-lg border bg-transparent border-gray-300 w-[20vw]"
+                className="p-3 outline-none rounded-lg border bg-transparent border-gray-300 w-full min-w-[390px]"
               >
                 <option value="feminino">Paciente</option>
                 <option value="masculino">Médico</option>
@@ -94,7 +93,7 @@ const Signup = () => {
         </div>
 
         <Link to="/cadastro-endereco">
-          <button className="p-3 rounded-2xl outline-none border-none bg-purple-400 hover:bg-purple-500 transition-all duration-300 w-[20vw] font-semibold text-xl text-white">
+          <button className="p-3 rounded-2xl outline-none border-none bg-purple-400 hover:bg-purple-500 transition-all duration-300 w-full min-w-[390px] font-semibold text-xl text-white">
             Próximo
           </button>
         </Link>

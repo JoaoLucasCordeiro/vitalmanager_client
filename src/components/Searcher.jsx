@@ -6,9 +6,9 @@ const Searcher = ({placeholder}) => {
       <input
         type="text"
         placeholder={placeholder}
-        className="ml-5 pl-10 pr-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-purple-400 w-[50vw] bg-transparent"
+        className="pl-10 pr-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-purple-400 w-[80vw] max-w-[650px] bg-transparent"
       />
-      <FiSearch className="absolute left-8 top-1/2 transform -translate-y-1/2 text-gray-400" />
+      <FiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
     </div>
   );
 };
