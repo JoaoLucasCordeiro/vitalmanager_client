@@ -4,6 +4,7 @@ import {
   AiOutlineCalendar,
   AiOutlineLogout,
   AiOutlineMenu,
+  AiOutlineClose,
 } from "react-icons/ai";
 import { MdOutlineMedicalServices } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -19,7 +20,11 @@ const SidebarMed = () => {
       className="md:hidden text-3xl text-white p-3 absolute top-0 right-0 z-20"
       onClick={toggleSidebar}
     >
-      <AiOutlineMenu className="text-purple-500 text-3xl mr-5 mt-12"/>
+        {isOpen ? (
+          <AiOutlineClose className="text-purple-500 text-3xl mr-5 mt-14" />
+        ) : (
+          <AiOutlineMenu className="text-purple-500 text-3xl mr-5 mt-14" />
+        )}
     </button>
     <nav
       className={`w-40 h-full fixed bg-purple p-3 top-0 ${isOpen ? "left-0" : "-left-60"} transition-left duration-300 ease-in-out z-10 md:left-0 md:translate-x-0`}
