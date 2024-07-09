@@ -10,7 +10,7 @@ const SignupAdress = () => {
           className="w-[600px]"
         />
 
-        <div className="flex items-center gap-10">
+        <div className="flex  gap-10">
           <div className="flex flex-col ">
             <label htmlFor="cep" className="flex flex-col ">
               CEP
@@ -75,21 +75,11 @@ const SignupAdress = () => {
               />
             </label>
 
-            <label htmlFor="usertype" className="flex flex-col ">
-              Tipo de usuário
-              <select
-                name="usertype"
-                id="usertype"
-                className="p-3 outline-none rounded-lg border bg-transparent border-gray-300 w-[20vw]"
-              >
-                <option value="feminino">Paciente</option>
-                <option value="masculino">Médico</option>
-              </select>
-            </label>
+        
           </div>
         </div>
 
-        <button className="p-3 rounded-2xl outline-none border-none bg-purple-400 hover:bg-purple-500 transition-all duration-300 w-[20vw] font-semibold text-xl text-white">
+        <button className="p-3 rounded-2xl outline-none border-none bg-purple hover:bg-purple-500 transition-all duration-300 w-[20vw] font-semibold text-xl text-white">
           Cadastrar
         </button>
       </form>

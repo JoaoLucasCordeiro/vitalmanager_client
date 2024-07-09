@@ -1,6 +1,6 @@
 import React from "react";
 
-const SignupMed = () => {
+const MedSignup = () => {
   return (
     <div>
       <h1 className="text-4xl font-bold">
@@ -10,4 +10,4 @@ const SignupMed = () => {
   );
 };
 
-export default SignupMed;
+export default MedSignup;

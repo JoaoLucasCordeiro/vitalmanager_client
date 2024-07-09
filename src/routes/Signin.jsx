@@ -26,14 +26,17 @@ const Signin = () => {
             className="p-2 outline-none rounded-lg border bg-transparent border-gray-300 w-[20vw]"
           />
         </label>
-        <button className="mt-5 p-3 rounded-2xl outline-none border-none bg-purple-400 hover:bg-purple-500 transition-all duration-300 w-[20vw] font-semibold text-xl text-white">
-          Entrar
-        </button>
+        <Link to="/inicio">
+          <button className="mt-5 p-3 rounded-2xl outline-none border-none bg-purple  hover:bg-purple-500 transition-all duration-300 w-[20vw] font-semibold text-xl text-white">
+            Entrar
+          </button>
+        </Link>
+
         <span className="text-black font-semibold text-base">
           Não possui uma conta?
         </span>
         <Link to="/cadastro">
-          <button className="p-3 rounded-2xl outline-none border-none bg-purple-400 hover:bg-purple-500 transition-all duration-300 w-[20vw] font-semibold text-xl text-white">
+          <button className="p-3 rounded-2xl outline-none border-none bg-purple  hover:bg-purple-500 transition-all duration-300 w-[20vw] font-semibold text-xl text-white">
             Cadastre-se
           </button>
         </Link>

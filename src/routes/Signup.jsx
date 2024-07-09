@@ -78,6 +78,18 @@ const Signup = () => {
                 className="p-2 outline-none rounded-lg border bg-transparent border-gray-300 w-[20vw]"
               />
             </label>
+
+            <label htmlFor="usertype" className="flex flex-col ">
+              Tipo de usuário
+              <select
+                name="usertype"
+                id="usertype"
+                className="p-3 outline-none rounded-lg border bg-transparent border-gray-300 w-[20vw]"
+              >
+                <option value="feminino">Paciente</option>
+                <option value="masculino">Médico</option>
+              </select>
+            </label>
           </div>
         </div>
 
