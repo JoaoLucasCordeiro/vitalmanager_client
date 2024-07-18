@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 // Importando os componentes para cada rota
 import Signin from "./routes/Signin";
@@ -9,14 +11,14 @@ import Home from "./routes/Home";
 import SignupAdress from "./routes/SignupAdress";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import MedicalRecords from "./routes/MedicalRecords";
-import MedHome from "./routes/MedHome"
+import MedHome from "./routes/MedHome";
 import MedScheduling from "./routes/MedScheduling";
 import MedicalRecordsMed from "./routes/MedicalRecordsMed";
-
 
 const App = () => {
   return (
     <Router>
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<Signin />} />
         <Route path="/cadastro" element={<Signup />} />
@@ -29,11 +31,11 @@ const App = () => {
           <Route path="/prontuarios" element={<MedicalRecords />} />
           <Route path="/inicio-medico" element={<MedHome />} />
           <Route path="/agenda-pacientes" element={<MedScheduling />} />
-          <Route path="/prontuarios-pacientes" element={<MedicalRecordsMed />} />
+          <Route
+            path="/prontuarios-pacientes"
+            element={<MedicalRecordsMed />}
+          />
         </Route>
-
-      
-
       </Routes>
     </Router>
   );

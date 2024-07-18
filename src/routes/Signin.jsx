@@ -1,19 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify'; // Importar react-toastify
-
-// Componente Spinner simples para indicar carregamento
-const Spinner = () => (
-  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-    <div style={{ border: '4px solid #BD7DFB', borderTop: '4px solid #BD7DFB', borderRadius: '50%', width: '40px', height: '40px', animation: 'spin 2s linear infinite' }}></div>
-    <style>{`
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-    `}</style>
-  </div>
-);
+import { toast } from "react-toastify"; // Importar react-toastify
+import { ClipLoader } from "react-spinners";
 
 const Signin = () => {
   const [email, setEmail] = useState("");
@@ -36,13 +24,16 @@ const Signin = () => {
     try {
       console.log("Enviando dados de login:", { email, senha });
 
-      const response = await fetch("https://vital-manager-eyk4.onrender.com/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, senha }),
-      });
+      const response = await fetch(
+        "https://vital-manager-eyk4.onrender.com/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, senha }),
+        }
+      );
 
       console.log("Status da resposta:", response.status);
 
@@ -53,6 +44,11 @@ const Signin = () => {
         localStorage.setItem("tipo", data.tipo);
         localStorage.setItem("id", data.id.toString());
         localStorage.setItem("token", data.token);
+        localStorage.setItem("id_fk", data.id_fk);
+        localStorage.setItem("prontuario_id", data.prontuario_id);
+
+        console.log("O id_fk é:", data.id_fk);
+        console.log("O prontuario_id é:", data.prontuario_id);
 
         setIsLoading(false); // Desativa o estado de loading após receber a resposta
 
@@ -61,7 +57,11 @@ const Signin = () => {
         const errorResponse = await response.text();
         console.error("Resposta de erro:", errorResponse);
         setIsLoading(false);
-        toast.error("Email ou senha incorretos."); // Mostra erro se email ou senha estiverem errados
+        if (errorResponse === "Email not found") {
+          toast.error("Email incorreto ou não cadastrado, por favor tente um email válido.");
+        } else if (errorResponse === "Invalid password") {
+          toast.error("Senha incorreta, tente novamente.");
+        }
       }
     } catch (error) {
       console.error("Error logging in:", error);
@@ -73,9 +73,12 @@ const Signin = () => {
   return (
     <section className="h-screen flex justify-center items-center">
       {isLoading ? (
-        <Spinner />
+        <ClipLoader color="#BD7DFB" size={120} />
       ) : (
-        <form className="flex flex-col items-center justify-center gap-4 p-4 w-full max-w-md" onSubmit={handleSubmit}>
+        <form
+          className="flex flex-col items-center justify-center gap-4 p-4 w-full max-w-md"
+          onSubmit={handleSubmit}
+        >
           <img
             src="/vitalmanagerlogo.svg"
             alt="Logo da plataforma VitalManager"
@@ -84,7 +87,7 @@ const Signin = () => {
           <label htmlFor="email" className="flex flex-col w-full">
             Email
             <input
-            required
+              required
               type="text"
               id="email"
               value={email}
@@ -95,7 +98,7 @@ const Signin = () => {
           <label htmlFor="password" className="flex flex-col w-full">
             Senha
             <input
-            required
+              required
               type="password"
               id="password"
               value={senha}
@@ -104,17 +107,21 @@ const Signin = () => {
             />
           </label>
 
-          <button type="submit" className="mt-5 p-3 rounded-2xl outline-none border-none bg-purple hover:bg-purple-500 transition-all duration-300 w-full font-semibold text-xl text-white min-w-[390px] min-h-[50px]">
+          <button
+            type="submit"
+            className="mt-5 p-3 rounded-2xl outline-none border-none bg-purple hover:bg-purple-500 transition-all duration-300 w-full font-semibold text-xl text-white min-w-[390px] min-h-[50px]"
+          >
             Entrar
           </button>
 
           <span className="text-black font-semibold text-base">
             Não possui uma conta?
           </span>
-          <Link to="/cadastro" className="flex items-center justify-center p-3 rounded-2xl outline-none border-none bg-purple hover:bg-purple-500 transition-all duration-300 w-full font-semibold text-xl text-white min-w-[390px] min-h-[50px]">
-            <button>
-              Cadastre-se
-            </button>
+          <Link
+            to="/cadastro"
+            className="flex items-center justify-center p-3 rounded-2xl outline-none border-none bg-purple hover:bg-purple-500 transition-all duration-300 w-full font-semibold text-xl text-white min-w-[390px] min-h-[50px]"
+          >
+            <button>Cadastre-se</button>
           </Link>
         </form>
       )}
