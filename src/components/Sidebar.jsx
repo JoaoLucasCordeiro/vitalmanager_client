@@ -7,12 +7,23 @@ import {
   AiOutlineClose,
 } from "react-icons/ai";
 import { MdOutlineMedicalServices } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Use useNavigate instead of useHistory
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate(); // Use the useNavigate hook
 
   const toggleSidebar = () => setIsOpen(!isOpen);
+
+  // Adjusted function for logout to use navigate
+  const handleLogout = () => {
+    localStorage.removeItem("tipo");
+    localStorage.removeItem("id");
+    localStorage.removeItem("token");
+
+    toggleSidebar(); // Optionally close the sidebar
+    navigate("/"); // Use navigate for redirection
+  };
 
   return (
     <>
@@ -68,7 +79,7 @@ const Sidebar = () => {
               to="/"
               className="text-3xl text-white cursor-pointer font-extrabold"
               title="Sair/Logout"
-              onClick={toggleSidebar}
+              onClick={handleLogout}
             >
               <AiOutlineLogout />
             </Link>

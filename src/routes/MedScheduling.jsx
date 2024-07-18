@@ -1,5 +1,4 @@
 import React from "react";
-import SelectDocType from "../components/SelectDocType";
 import Searcher from "../components/Searcher";
 
 const MedScheduling = () => {

@@ -1,11 +1,11 @@
 import React from "react";
 import { FaUserMd } from "react-icons/fa";
 
-const MedCard = ({ nome, sobrenome, especialidade }) => {
+const MedCard = ({ nome,  especialidade }) => {
   return (
     <div className="border border-gray-200 rounded-lg p-4 py-10 max-w-md w-full text-center shadow-lg hover:shadow-xl transition-shadow duration-200">
       <FaUserMd className="mx-auto text-6xl text-gray-400" />
-      <h2 className="mt-2 text-lg font-semibold">{nome} {sobrenome}</h2>
+      <h2 className="mt-2 text-lg font-semibold">{nome}</h2>
       <p className="text-gray-600">{especialidade}</p>
       <button className="mt-4 px-4 py-2 bg-purple-500 text-white rounded-full hover:bg-purple-600 transition-colors outline-none">
         Marcar Consulta
