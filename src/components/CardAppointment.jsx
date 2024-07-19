@@ -16,7 +16,7 @@ const CardAppointment = ({ data, hora, observacoes, status }) => {
   );
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white my-4 rounded-lg">
+    <div className="max-w-sm overflow-hidden shadow-lg bg-white my-4 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer">
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2 text-purple-500">Consulta</div>
         <p className=" text-base text-purple-500 font-bold">

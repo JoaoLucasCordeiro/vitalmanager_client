@@ -8,6 +8,7 @@ import {
 } from "react-icons/ai";
 import { MdOutlineMedicalServices } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { FaPills } from 'react-icons/fa';
 
 const SidebarMed = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,23 +54,32 @@ const SidebarMed = () => {
               title="Home"
               onClick={toggleSidebar}
             >
-              <AiOutlineHome />
+             <AiOutlineCalendar />
             </Link>
-            <Link
+            {/* <Link
               to="/agenda-pacientes"
               className="text-3xl text-white cursor-pointer font-extrabold"
               title="Agendamentos"
               onClick={toggleSidebar}
             >
               <AiOutlineCalendar />
-            </Link>
+            </Link> */}
             <Link
-              to="/prontuarios-pacientes"
+              to="/exames-pacientes"
               className="text-3xl text-white cursor-pointer font-extrabold"
               title="Prontuário Médico"
               onClick={toggleSidebar}
             >
               <MdOutlineMedicalServices />
+            </Link>
+
+            <Link
+              to="/items-hospitalares"
+              className="text-3xl text-white cursor-pointer font-extrabold"
+              title="Items hospitalares"
+              onClick={toggleSidebar}
+            >
+             <FaPills />
             </Link>
           </div>
           <div className="mt-auto">

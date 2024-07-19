@@ -17,7 +17,7 @@ const Home = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log("Token:", token); // Log the token
+   
     fetch("https://vital-manager-eyk4.onrender.com/medicos/", {
       method: "GET",
       headers: {
