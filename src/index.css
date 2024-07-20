@@ -12,6 +12,28 @@ body {
   background-color: #f3f4f6;
 }
 
+/* Personaliza a barra de rolagem para toda a aplicação */
+/* Cor de fundo da barra de rolagem */
+::-webkit-scrollbar {
+  width: 12px; /* Largura da barra de rolagem */
+}
+
+/* Cor de fundo da trilha da barra de rolagem */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Cor de fundo da trilha */
+}
+
+/* Cor do manipulador da barra de rolagem (a parte que você arrasta) */
+::-webkit-scrollbar-thumb {
+  background: #C084FC; /* Cor purple-500 do Tailwind CSS */
+  border-radius: 1rem;
+}
+
+/* Cor do manipulador da barra de rolagem ao passar o mouse */
+::-webkit-scrollbar-thumb:hover {
+  background: #824fb4; /* Um tom mais escuro de roxo para o hover */
+}
+
 @layer utilities {
   .bg-purple {
     @apply bg-purple-400;

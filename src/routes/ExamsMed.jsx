@@ -1,6 +1,5 @@
 import React from "react";
 import Searcher from "../components/Searcher";
-import SelectDocType from "../components/SelectDocType";
 
 const ExamsMed = () => {
   return (

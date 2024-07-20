@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 import AddItemModal from "../components/AddItemModal"; // Ajuste o caminho de importação conforme necessário
-
+import {
+  FaRegHospital,
+  FaTag,
+  FaBalanceScale,
+  FaCalendarAlt,
+  FaCube,
+} from "react-icons/fa";
 const StockItemsModal = ({ stockId, onClose }) => {
   const [stockDetails, setStockDetails] = useState(null);
   const [isAddItemModalOpen, setIsAddItemModalOpen] = useState(false);
@@ -54,29 +60,58 @@ const StockItemsModal = ({ stockId, onClose }) => {
           <h3 className="text-3xl font-bold leading-6 text-purple-500 py-5">
             Estoque de {stockDetails.nome}
           </h3>
-          <div className="text-left">
+          <div className="overflow-y-auto max-h-[65vh]">
             {stockDetails.itensHospitalares.length > 0 ? (
               stockDetails.itensHospitalares.map((item) => (
-                <div key={item.idItensHospitalares} className="mb-4">
-                  <h4 className="font-bold">{item.nome}</h4>
-                  <p>Descrição: {item.descricao}</p>
-                  <p>Preço: {item.preco}</p>
-                  <p>Quantidade: {item.quantidade}</p>
-                  <p>Data de Validade: {item.dataValidade}</p>
+                <div
+                  key={item.idItensHospitalares}
+                  className="mb-4 flex flex-col gap-2 bg-gray-200 shadow-xl rounded-lg p-3"
+                >
+                  <h4 className="font-bold text-purple-500 text-xl">
+                    {" "}
+                    {item.nome}
+                  </h4>
+                  <p className="flex items-center gap-2 text-purple-500 font-bold">
+                    <FaTag /> Descrição:{" "}
+                    <span className="text-black font-normal">
+                      {item.descricao}
+                    </span>{" "}
+                  </p>
+                  <p className="flex items-center gap-2 text-purple-500 font-bold">
+                    <FaBalanceScale /> Preço:{" "}
+                    <span className="text-black font-normal">{item.preco}</span>
+                  </p>
+                  <p className="flex items-center gap-2 text-purple-500 font-bold">
+                    <FaCube /> Quantidade:{" "}
+                    <span className="text-black font-normal">
+                      {item.quantidade}
+                    </span>
+                  </p>
+                  <p className="flex items-center gap-2 text-purple-500 font-bold">
+                    <FaCalendarAlt /> Data de Validade:{" "}
+                    <span className="text-black font-normal">
+                      {item.dataValidade}
+                    </span>
+                  </p>
                 </div>
               ))
             ) : (
-              <p className="text-center text-gray-700 font-bold">Não há itens neste estoque.</p>
+              <p className="text-center text-gray-700 font-bold">
+                Não há itens neste estoque.
+              </p>
             )}
           </div>
-          <button 
+          <button
             onClick={openAddItemModal}
-            className="bg-purple-400 p-2 w-full rounded-xl shadow-xl font-bold text-white hover:bg-purple-500 mt-4">
+            className="bg-purple-400 p-2 w-full rounded-xl shadow-xl font-bold text-white hover:bg-purple-500 mt-4"
+          >
             Adicionar novo item
           </button>
         </div>
       </div>
-      {isAddItemModalOpen && <AddItemModal stockId={stockId} onClose={closeAddItemModal} />}
+      {isAddItemModalOpen && (
+        <AddItemModal stockId={stockId} onClose={closeAddItemModal} />
+      )}
     </div>
   );
 };
