@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from "react";
 import MedCard from "../components/MedCard";
-import Searcher from "../components/Searcher";
-import SelectDocType from "../components/SelectDocType";
-import AppointmentModal from "../components/AppointmentModal"; // Importe o AppointmentModal
+import AppointmentModal from "../components/AppointmentModal";
 
 const Home = () => {
   const [medicos, setMedicos] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false); // Estado para controlar a visibilidade do modal
-  const [selectedMedicoId, setSelectedMedicoId] = useState(null); // Estado para armazenar o ID do médico selecionado
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedMedicoId, setSelectedMedicoId] = useState(null);
+  const [searchTerm, setSearchTerm] = useState(""); // Adicionado estado para o termo de busca
 
   const handleMarcarConsulta = (idMedico) => {
-    console.log(idMedico); // Log do ID do médico
-    setSelectedMedicoId(idMedico); // Salva o ID do médico no estado
-    setIsModalOpen(true); // Abre o modal
+    setSelectedMedicoId(idMedico);
+    setIsModalOpen(true);
   };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-   
     fetch("https://vital-manager-eyk4.onrender.com/medicos/", {
       method: "GET",
       headers: {
@@ -25,16 +22,14 @@ const Home = () => {
         Authorization: `Bearer ${token}`,
       },
     })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setMedicos(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching médicos:", error); // Log the error
-      });
+      .then((response) => response.json())
+      .then((data) => setMedicos(data))
+      .catch((error) => console.error("Error fetching médicos:", error));
   }, []);
+
+  const filteredMedicos = medicos.filter((medico) =>
+    (`${medico.usuario.nome} ${medico.usuario.sobrenome}`).toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <section className="flex flex-col sm:justify-normal justify-center md:items-baseline items-center h-screen p-4 md:ml-[12%] ml-0">
@@ -45,17 +40,21 @@ const Home = () => {
         </h2>
 
         <div className="flex flex-col items-center md:justify-normal justify-center sm:mt-10 mt-5 md:space-x-4 space-x-0 sm:flex-row sm:gap-0 gap-4">
-          <Searcher placeholder="Procurar por um médico" />
-          <SelectDocType />
+          <input
+            type="text"
+            placeholder="Procurar por um médico"
+            className="pl-10 pr-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-purple-400 w-[80vw] max-w-[650px] bg-transparent"
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
-        <div className="flex items-center flex-wrap gap-3 py-5">
-          {medicos.map((medico) => (
+        <div className="flex items-center max-w-[80vw] gap-3 py-5">
+          {filteredMedicos.map((medico) => (
             <MedCard
               key={medico.idMedico}
               nome={`${medico.usuario.nome} ${medico.usuario.sobrenome}`}
               especialidade={medico.especialidade}
               idMedico={medico.idMedico}
-              onMarcarConsulta={() => handleMarcarConsulta(medico.idMedico)} // Correção aqui
+              onMarcarConsulta={() => handleMarcarConsulta(medico.idMedico)}
             />
           ))}
         </div>

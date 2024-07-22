@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Searcher from "../components/Searcher";
 import CardExam from "../components/CardExam"; // Import the CardExam component
 
 const ExamsMed = () => {
   const [exams, setExams] = useState([]); // State to store exams data
+  const [searchTerm, setSearchTerm] = useState(""); // State for the search term
 
   useEffect(() => {
     const id = localStorage.getItem("id_fk");
@@ -19,44 +19,30 @@ const ExamsMed = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("Dados recebidos do médico:", data);
-
-          // Adicione um log para verificar a estrutura dos dados
-          console.log("Tipo de dados recebidos:", typeof data);
-          console.log("Estrutura dos dados recebidos:", data);
-
           if (Array.isArray(data)) {
             setExams(data);
           } else if (data && typeof data === "object") {
-            // Coloque o objeto em um array
             setExams([data]);
           } else {
             console.error("Formato inesperado de dados:", data);
-            setExams([]); // Define exams como um array vazio ou trata conforme necessário
+            setExams([]);
           }
         })
         .catch((error) => {
           console.error("Erro na requisição:", error);
-          setExams([]); // Garante que exams seja definido como um array vazio em caso de erro
+          setExams([]);
         });
     }
   }, []);
 
   function formatDate(dateString) {
-    const parts = dateString.split("-"); // Separa a data em [ano, mês, dia]
-    return `${parts[2]}/${parts[1]}/${parts[0]}`; // Reorganiza para DD/MM/YYYY
+    const parts = dateString.split("-");
+    return `${parts[2]}/${parts[1]}/${parts[0]}`;
   }
 
-  // No componente ExamsMed, ao renderizar CardExam:
-  {
-    exams.map((exam) => (
-      <CardExam
-        key={exam.idExame}
-        dataExame={formatDate(exam.dataExame)} // Formata a data antes de passar
-        tipoExame={exam.tipoExame}
-      />
-    ));
-  }
+  const filteredExams = exams.filter((exam) =>
+    exam.tipoExame.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <section className="flex flex-col sm:justify-normal justify-center md:items-baseline items-center h-screen p-4 md:ml-[12%] ml-0">
@@ -67,16 +53,27 @@ const ExamsMed = () => {
         </h2>
 
         <div className="flex flex-col items-center md:justify-normal justify-center sm:mt-10 mt-5 md:space-x-4 space-x-0 sm:flex-row sm:gap-0 gap-4">
-          <Searcher placeholder="Procurar exame" />
+          <input
+            type="text"
+            placeholder="Procurar exame"
+            className="pl-10 pr-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-purple-400 w-[80vw] max-w-[650px] bg-transparent"
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
         <div className="ml-5 flex items-center flex-wrap gap-3 py-5">
-          {exams.map((exam) => (
-            <CardExam
-              key={exam.idExame}
-              dataExame={formatDate(exam.dataExame)} // Formata a data antes de passar
-              tipoExame={exam.tipoExame}
-            />
-          ))}
+          {filteredExams.length > 0 ? (
+            filteredExams.map((exam) => (
+              <CardExam
+                key={exam.idExame}
+                dataExame={formatDate(exam.dataExame)}
+                tipoExame={exam.tipoExame}
+              />
+            ))
+          ) : (
+            <h1 className="text-purple-500 text-3xl font-bold text-center">
+              Sem exames encontrados
+            </h1>
+          )}
         </div>
       </div>
     </section>

@@ -44,7 +44,7 @@ const Scheduling = () => {
         </h2>
 
         <div className="flex flex-col items-center md:justify-normal justify-center sm:mt-10 mt-5 md:space-x-4 space-x-0 sm:flex-row sm:gap-0 gap-4">
-          <Searcher placeholder="Procurar por uma consulta" />
+          {/* <Searcher placeholder="Procurar por uma consulta" /> */}
 
         </div>
 

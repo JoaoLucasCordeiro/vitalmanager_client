@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { toast, ToastContainer } from 'react-toastify';
 
 const AppointmentModal = ({ onClose, onSubmit, idMedico }) => {
   console.log("idMedico recebido:", idMedico);
@@ -30,11 +31,11 @@ const AppointmentModal = ({ onClose, onSubmit, idMedico }) => {
     e.preventDefault();
     console.log("Dados do formulário antes do envio:", formData);
     const token = localStorage.getItem("token");
-
+  
     // Formata a data para o formato aceito pelo backend
     const dataFormatada = formData.data.split("/").reverse().join("-");
     const formDataComDataFormatada = { ...formData, data: dataFormatada };
-
+  
     fetch("https://vital-manager-eyk4.onrender.com/consultas/", {
       method: "POST",
       headers: {
@@ -43,13 +44,18 @@ const AppointmentModal = ({ onClose, onSubmit, idMedico }) => {
       },
       body: JSON.stringify(formDataComDataFormatada),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) throw new Error("Erro na marcação da consulta");
+        return response.json();
+      })
       .then((data) => {
         console.log("Resposta do servidor:", data);
+        toast.success("Consulta marcada com sucesso!");
         onSubmit(); // Chama a função onSubmit passada como prop
       })
       .catch((error) => {
         console.error("Erro ao enviar formulário:", error);
+        toast.error("Falha ao marcar consulta.");
       });
   };
 
