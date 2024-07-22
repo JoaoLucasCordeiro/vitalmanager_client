@@ -81,6 +81,8 @@ const SidebarMed = () => {
             >
              <FaPills />
             </Link>
+
+            
           </div>
           <div className="mt-auto">
             <Link

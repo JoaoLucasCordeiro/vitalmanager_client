@@ -1,6 +1,13 @@
 import React from "react";
 
-const CardAppointment = ({ data, hora, observacoes, status }) => {
+const CardAppointment = ({
+  data,
+  hora,
+  observacoes,
+  status,
+  idProntuario,
+  onClick,
+}) => {
   // Formata a data e hora para exibição
   const dataFormatada = new Date(data).toLocaleDateString("pt-BR", {
     day: "2-digit",
@@ -15,6 +22,8 @@ const CardAppointment = ({ data, hora, observacoes, status }) => {
     }
   );
 
+  // idProntuario é recebido mas não exibido no componente
+
   return (
     <div className="max-w-sm overflow-hidden shadow-lg bg-white my-4 rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer">
       <div className="px-6 py-4">
@@ -26,13 +35,21 @@ const CardAppointment = ({ data, hora, observacoes, status }) => {
           Hora: <span className="text-black font-normal"> {horaFormatada}</span>
         </p>
         <p className=" text-base text-purple-500 font-bold">
-          Observações: <span className="text-black font-normal">{observacoes}</span>{" "}
+          Observações:{" "}
+          <span className="text-black font-normal">{observacoes}</span>{" "}
         </p>
       </div>
       <div className="px-6 pb-2">
-        <span className="inline-block bg-purple-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+        {/* <span className="inline-block bg-purple-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
           #{status}
-        </span>
+        </span> */}
+
+        <button
+          className="bg-purple-500 hover:bg-purple-600 rounded-2xl py-1 px-4 outline-none border-none text-base font-bold text-white"
+          onClick={() => onClick(idProntuario)}
+        >
+          Marcar Exame
+        </button>
       </div>
     </div>
   );
