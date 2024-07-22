@@ -22,12 +22,12 @@ const MedicalRecordCard = ({
 }) => {
   return (
     <div className="w-screen max-w-[40vw] h-screen max-h-[50vh] rounded-2xl overflow-hidden shadow-lg bg-white p-5 relative">
-      <button
+      {/* <button
         className="outline-none border-none absolute top-5 right-5 text-white bg-purple-500 hover:bg-purple-700 font-bold py-2 px-4 rounded-full w-[50px] h-[50px] flex items-center justify-center"
         onClick={onEdit}
       >
         <FaEdit />
-      </button>
+      </button> */}
       <div className="flex items-center justify-center w-full h-full flex-col gap-10">
         <h3 className="font-bold text-4xl mb-2 text-center text-purple-500">
           Prontuário Médico

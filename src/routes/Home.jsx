@@ -47,7 +47,7 @@ const Home = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <div className="flex items-center max-w-[80vw] gap-3 py-5">
+        <div className="flex items-center flex-wrap w-[80vw] gap-3 py-5">
           {filteredMedicos.map((medico) => (
             <MedCard
               key={medico.idMedico}

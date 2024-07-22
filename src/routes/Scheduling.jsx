@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import SelectDocType from "../components/SelectDocType";
 import Searcher from "../components/Searcher";
 import CardAppointment from "../components/CardAppointment";
+import CardAppointmentPatient from "../components/CardAppointmentPatient";
 
 const Scheduling = () => {
   const [consultas, setConsultas] = useState([]); // Estado para armazenar as consultas
@@ -51,11 +52,10 @@ const Scheduling = () => {
         {consultas.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {consultas.map((consulta) => (
-              <CardAppointment
+              <CardAppointmentPatient
                 key={consulta.observacoes}
                 data={consulta.data}
                 hora={consulta.hora}
-                status={consulta.status}
                 observacoes={consulta.observacoes}
               />
             ))}

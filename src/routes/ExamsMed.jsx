@@ -8,7 +8,9 @@ const ExamsMed = () => {
   useEffect(() => {
     const id = localStorage.getItem("id_fk");
     const token = localStorage.getItem("token");
-
+  
+    console.log("Token:", token); // Log Token
+    
     if (id && token) {
       fetch(`https://vital-manager-eyk4.onrender.com/exames/${id}`, {
         method: "GET",
@@ -19,9 +21,13 @@ const ExamsMed = () => {
       })
         .then((response) => response.json())
         .then((data) => {
+          console.log("Dados recebidos da API:", data); // Log API Response
+  
           if (Array.isArray(data)) {
+            console.log("Atualizando exames com um array de dados"); // Before updating state
             setExams(data);
           } else if (data && typeof data === "object") {
+            console.log("Atualizando exames com um único objeto de dados"); // Before updating state
             setExams([data]);
           } else {
             console.error("Formato inesperado de dados:", data);
@@ -34,16 +40,22 @@ const ExamsMed = () => {
         });
     }
   }, []);
+  
+  // Ensure filteredExams is declared and initialized before using it
+  const filteredExams = exams.filter((exam) =>
+    exam.tipoExame.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  
+  // Now it's safe to log filteredExams after its declaration
+  console.log("Termo de busca:", searchTerm);
+  console.log("Exames filtrados:", filteredExams);
 
   function formatDate(dateString) {
     const parts = dateString.split("-");
     return `${parts[2]}/${parts[1]}/${parts[0]}`;
   }
 
-  const filteredExams = exams.filter((exam) =>
-    exam.tipoExame.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
+ ;
   return (
     <section className="flex flex-col sm:justify-normal justify-center md:items-baseline items-center h-screen p-4 md:ml-[12%] ml-0">
       <div>
