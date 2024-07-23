@@ -43,7 +43,7 @@ const ExamsMed = () => {
   
   // Ensure filteredExams is declared and initialized before using it
   const filteredExams = exams.filter((exam) =>
-    exam.tipoExame.toLowerCase().includes(searchTerm.toLowerCase())
+    exam.tipoExame && exam.tipoExame.toLowerCase().includes(searchTerm.toLowerCase())
   );
   
   // Now it's safe to log filteredExams after its declaration
